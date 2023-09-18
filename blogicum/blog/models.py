@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+
 class Location(models.Model):
     name = models.CharField('Название места', max_length=256)
     is_published = models.BooleanField('Опубликовано', default=True)
@@ -11,9 +12,10 @@ class Location(models.Model):
     class Meta:
         verbose_name = 'местоположение'
         verbose_name_plural = 'Местоположения'
-    
+
     def __str__(self):
         return self.name
+
 
 class Category(models.Model):
     title = models.CharField('Заголовок', max_length=256)
@@ -21,7 +23,8 @@ class Category(models.Model):
     slug = models.SlugField(
         'Идентификатор',
         unique=True,
-        help_text='Идентификатор страницы для URL; разрешены символы латиницы, цифры, дефис и подчёркивание.')
+        help_text='Идентификатор страницы для URL; разрешены символы латиницы,\
+            цифры, дефис и подчёркивание.')
     is_published = models.BooleanField(
         'Опубликовано',
         default=True,
@@ -29,18 +32,20 @@ class Category(models.Model):
     created_at = models.DateTimeField('Добавлено', auto_now_add=True)
 
     class Meta:
-            verbose_name = 'категория'
-            verbose_name_plural = 'Категории'
+        verbose_name = 'категория'
+        verbose_name_plural = 'Категории'
 
     def __str__(self):
         return self.title
+
 
 class Post(models.Model):
     title = models.CharField('Заголовок', max_length=256)
     text = models.TextField('Текст')
     pub_date = models.DateTimeField(
         'Дата и время публикации',
-        help_text='Если установить дату и время в будущем — можно делать отложенные публикации.')
+        help_text='Если установить дату и время в будущем — можно делать\
+            отложенные публикации.')
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,

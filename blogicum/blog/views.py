@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from datetime import datetime
-from django.db.models import Q
 
 from blog.models import Post, Category
+
 
 def index(request):
     template = 'blog/index.html'
@@ -13,6 +13,7 @@ def index(request):
         ).order_by('-pub_date')[:5]
     context = {'post_list': post_list}
     return render(request, template, context)
+
 
 def post_detail(request, pk):
     template = 'blog/detail.html'
@@ -27,6 +28,7 @@ def post_detail(request, pk):
         'post': post,
     }
     return render(request, template, context)
+
 
 def category_posts(request, category_slug):
     template = 'blog/category.html'
