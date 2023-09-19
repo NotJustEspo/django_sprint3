@@ -74,6 +74,7 @@ class Post(BaseModel):
         verbose_name = 'публикация'
         verbose_name_plural = 'Публикации'
         default_related_name = 'post'
+        ordering = ['-pub_date']
 
     def __str__(self):
         return self.title
