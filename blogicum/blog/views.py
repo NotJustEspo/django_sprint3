@@ -29,7 +29,7 @@ def index(request):
 def post_detail(request, pk):
     template = 'blog/detail.html'
     post = get_object_or_404(base_query().filter(
-            pk=pk,))
+        pk=pk,))
     context = {
         'post': post,
     }
