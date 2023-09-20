@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 
 User = get_user_model()
-LENGHT_LIMIT_CHAR = 256
+MAX_LENGTH_TITLE = 256
 
 
 class BaseModel(models.Model):
@@ -17,7 +17,7 @@ class BaseModel(models.Model):
 
 
 class Location(BaseModel):
-    name = models.CharField('Название места', max_length=LENGHT_LIMIT_CHAR)
+    name = models.CharField('Название места', max_length=MAX_LENGTH_TITLE)
 
     class Meta:
         verbose_name = 'местоположение'
@@ -28,7 +28,7 @@ class Location(BaseModel):
 
 
 class Category(BaseModel):
-    title = models.CharField('Заголовок', max_length=LENGHT_LIMIT_CHAR)
+    title = models.CharField('Заголовок', max_length=MAX_LENGTH_TITLE)
     description = models.TextField('Описание')
     slug = models.SlugField(
         'Идентификатор',
@@ -45,7 +45,7 @@ class Category(BaseModel):
 
 
 class Post(BaseModel):
-    title = models.CharField('Заголовок', max_length=LENGHT_LIMIT_CHAR)
+    title = models.CharField('Заголовок', max_length=MAX_LENGTH_TITLE)
     text = models.TextField('Текст')
     pub_date = models.DateTimeField(
         'Дата и время публикации',
