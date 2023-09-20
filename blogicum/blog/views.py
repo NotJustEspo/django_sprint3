@@ -1,10 +1,9 @@
+from blog.models import Category, Post
+
+from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
 
-from django.shortcuts import render, get_object_or_404
-
-from blog.models import Post, Category
-
-query_limit = 5
+PAGE_SIZE = 5
 
 
 def base_query():
@@ -21,15 +20,14 @@ def base_query():
 
 def index(request):
     template = 'blog/index.html'
-    post_list = base_query()[:query_limit]
+    post_list = base_query()[:PAGE_SIZE]
     context = {'post_list': post_list}
     return render(request, template, context)
 
 
 def post_detail(request, pk):
     template = 'blog/detail.html'
-    post = get_object_or_404(base_query().filter(
-        pk=pk,))
+    post = get_object_or_404(base_query(), pk=pk)
     context = {
         'post': post,
     }
